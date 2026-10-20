@@ -1,0 +1,19 @@
+# Optional cloud-init template for Ubuntu cloud VMs.
+# Select this as user-data only if your cloud provider supports cloud-init.
+# It does NOT create 32GB RAM or a 1TB disk; choose those in the provider's VM/disk settings.
+# No passwords, API keys, SSH private keys, or Tailscale auth keys belong in this file.
+
+#cloud-config
+package_update: true
+package_upgrade: true
+packages:
+  - curl
+  - ca-certificates
+  - jq
+  - htop
+  - tmux
+  - unzip
+  - rsync
+
+runcmd:
+  - [bash, -lc, "echo 'Base packages installed. Follow README.md to install and authorize Tailscale.'"]
